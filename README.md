@@ -1,6 +1,6 @@
 # Next.JS With Firebase Boiler Plate
 
-![image of app](/public/readme-img.png)
+
 
 This repo is a sample [next.js](https://nextjs.org/) project with [Firebase](https://firebase.google.com/) integration. I used `yarn create next-app` to bootstrap the project and I did not remove any of the starter files. Feel free to follow along with the YouTube tutorial [here](TODO) and check out the live website hosted on [Vercel](https://vercel.com/) [here](TODO).
 
