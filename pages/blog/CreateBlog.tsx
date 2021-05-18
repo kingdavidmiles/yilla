@@ -17,6 +17,7 @@ const App = () => {
   const formSubmit = async (e) => {
     e.preventDefault();
     await firebase
+      .firestore()
       .collection("post")
       .add(inputs)
       .then(async (documentReference) => {

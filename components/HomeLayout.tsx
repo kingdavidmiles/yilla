@@ -67,7 +67,7 @@ const Navbar = () => {
               <ul>
                 <li>
                   <button
-                    onClick={() => router.push("./auth")}
+                    onClick={() => router.push("./auth/auth")}
                     className="lg:inline-flex lg:w-auto w-full capitalize text-blue-600 tracking-widest px-3 py-2 rounded  font-bold items-center justify-center hover:bg-red-200"
                   >
                     login

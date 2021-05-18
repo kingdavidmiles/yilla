@@ -12,6 +12,7 @@ const BlogList: React.FC<BlogGetType> = () => {
 
   const getTodos = () => {
     firebase
+      .firestore()
       .collection("post")
       .get()
       .then((querySnapshot) => {

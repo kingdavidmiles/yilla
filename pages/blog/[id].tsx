@@ -12,6 +12,7 @@ const getPost = () => {
     (async () => {
       if (id) {
         const doc = await firebase
+          .firestore()
           .collection("post")
           .doc(id as string)
           .get();

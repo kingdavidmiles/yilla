@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase/app";
 import "firebase/firestore";
 
-import db from "../../firebase/initFirebase";
+import firebase from "../../firebase/initFirebase";
 
 const blog = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [event, setEvents] = useState([]);
+
   const fetchBlogs = async () => {
-    const response = db.collection("event").limit(1);
+    const response = firebase.firestore().collection("event").limit(1);
     const data = await response.get();
+
     data.docs.forEach((item) => {
-      setBlogs([...blogs, item.data()]);
+      setEvents([...event, item.data()]);
     });
   };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
+
   return (
     <div className="App">
-      {blogs &&
-        blogs.map((blog) => {
+      {event &&
+        event.map((blog) => {
           return (
             <div className="blog-container">
               <h4>{blog.content}</h4>
