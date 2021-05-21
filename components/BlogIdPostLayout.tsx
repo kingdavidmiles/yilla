@@ -12,12 +12,13 @@ const Navbar = () => {
   const router = useRouter;
 
   const { user, logout } = useUser();
+
   if (user) {
     return (
       <>
         <div className="lg:px-32   shadow-md" style={{ backgroundColor: "#f8faff" }}>
           <nav className="flex items-center flex-wrap  p-3 lg:mx-20">
-            <h2 className="uppercase font-bold">Welcome &nbsp;{user.name}</h2>
+            <h2 className="uppercase font-bold">Welcome &nbsp;{user.name || user.email}</h2>
             {/* <img src={"/image/logo1.png"} alt="click logo" className="w-28 " /> */}
 
             <button
@@ -46,12 +47,21 @@ const Navbar = () => {
               <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:justify-start   flex flex-col lg:h-auto ">
                 <ul className="  lg:inline-flex lg:w-auto w-full tracking-widest px-3 py-2 rounded  font-bold items-center justify-center hover:bg-red-200">
                   <li>
+                    {/* {user.role === "ADMIN" && ( */}
                     <button
-                      onClick={() => router.push("/blog/CreateBlog")}
+                      onClick={() => {
+                        if (user.role === "MEMBER") {
+                          return alert("youre not an admin");
+                          //  TODO
+                          // costomize this page well
+                        }
+                        router.push("/blog/CreateBlog");
+                      }}
                       className="uppercase font-bold"
                     >
                       create a post
                     </button>
+                    {/* )} */}
                   </li>
                 </ul>
               </div>

@@ -3,6 +3,8 @@ export type BlogTypes = {
     content?: string
     id?: number
     description: string
+    userEmail: string
+    userName: string
 
 
 }

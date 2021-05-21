@@ -10,26 +10,28 @@ type BlogGetType = {
 const BlogList: React.FC<BlogGetType> = () => {
   const [posts, setPosts] = useGlobalState("blogs");
 
-  const getTodos = () => {
-    firebase
-      .firestore()
-      .collection("post")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          setPosts((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+  const getTodos = async () => {
+    try {
+      await firebase
+        .firestore()
+        .collection("post")
+        .get()
+
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            setPosts((prev) => [...prev, { ...doc.data(), id: doc.id }]);
+          });
         });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
     getTodos();
-    return () => {
-      setPosts;
-    };
+    // return () => {
+    //   setPosts;
+    // };
   }, []);
 
   const blogPosts = posts ?? [];

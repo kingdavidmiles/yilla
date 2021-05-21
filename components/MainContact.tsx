@@ -54,8 +54,8 @@ const Contact = () => {
                 <h2 className="text-white tracking-wide">let help you!</h2>
 
                 <div className=" mr-2 mt-2">
-                  {listItems.flatMap((item) => (
-                    <div className="flex space-x-2 text-gray-400 text-sm my-3">
+                  {listItems.flatMap((item, index) => (
+                    <div className="flex space-x-2 text-gray-400 text-sm my-3" key={index}>
                       {item.icon}
                       <p className="text-white">{item.text}</p>
                     </div>

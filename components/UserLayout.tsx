@@ -47,8 +47,11 @@ const Navbar = () => {
               className={`${active ? "" : "hidden"}   w-full lg:inline-flex lg:flex-grow lg:w-auto`}
             >
               <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:justify-start   flex flex-col lg:h-auto ">
-                {headerLinks.flatMap((link) => (
-                  <ul className="  lg:inline-flex lg:w-auto w-full tracking-widest px-3 py-2 rounded  font-bold items-center justify-center hover:bg-red-200">
+                {headerLinks.flatMap((link, index) => (
+                  <ul
+                    className="  lg:inline-flex lg:w-auto w-full tracking-widest px-3 py-2 rounded  font-bold items-center justify-center hover:bg-red-200"
+                    key={index}
+                  >
                     <li>
                       <Link
                         href={link.to}

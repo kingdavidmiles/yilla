@@ -5,8 +5,6 @@ import "firebase/auth";
 import firebase from "../../firebase/initFirebase";
 
 type userData = {
-  firstName: string;
-
   email: string;
   password: string | number;
 };
@@ -18,24 +16,30 @@ const Form: React.FC<userData> = (props) => {
     formState: { errors },
   } = useForm<userData>();
 
-  const signUp = ({ firstName, email, password }) => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async (data) => {
-        if (data.user) {
-          await firebase
-            .firestore()
-            .doc("user/" + data.user.uid)
-            .update({
-              role: "ADMIN",
-            });
-        }
-        console.log();
-      })
-      .catch((error) => {
-        return { error };
-      });
+  /**
+   *
+   * @param param0
+   */
+  const signUp = async ({ email, password }) => {
+    try {
+      // create a new user
+      const createdUser = await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+      if (createdUser) {
+        // update the role of the newly created user
+        await firebase
+          .firestore()
+          .doc("users/" + createdUser.user.uid)
+          .set({
+            ...createdUser.additionalUserInfo,
+            email,
+            role: "ADMIN",
+          });
+      }
+    } catch (error) {
+      console.error(error);
+      throw new Error(error);
+    }
   };
 
   return (
@@ -58,16 +62,6 @@ const Form: React.FC<userData> = (props) => {
             <h3 className="p-1 text-gray-700">Free forever. No payment needed.</h3>
           </div>
           <form onSubmit={handleSubmit(signUp)}>
-            <div className="mt-5">
-              <label className="sc-bqyKva ePvcBv">Username</label>
-              <input
-                type="text"
-                {...register("firstName", { required: true, maxLength: 20 })}
-                className="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent"
-                placeholder="name"
-              />
-              <span className="text-red-600">{errors.firstName && "First name is required"}</span>
-            </div>
             <div className="mt-5">
               <input
                 type="email"

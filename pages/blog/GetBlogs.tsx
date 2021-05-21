@@ -8,8 +8,6 @@ import { useUser } from "../../firebase/useUser";
 const GetBlogs = () => {
   const { user } = useUser();
 
-  if (user) {
-  }
   return (
     <Bloglayout>
       <div className="container-fluid md:mx-20 lg:mx-20 md:py-9 lg:py-9 py-5">

@@ -1,4 +1,4 @@
-import Bloglayout from "../components/BlogIdPostLayout";
+import BlogIdPostLayout from "../components/BlogIdPostLayout";
 import Footer from "../components/Footer";
 import Head from "next/head";
 
@@ -15,7 +15,7 @@ const MainLayout = (props: MainLayoutProps) => {
       <Head>
         <title>{title ?? "blog"}</title>
       </Head>
-      <Bloglayout />
+      <BlogIdPostLayout />
       <div className="Content">{children}</div>
       <Footer />
     </div>

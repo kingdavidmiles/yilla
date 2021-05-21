@@ -1,11 +1,11 @@
 import React from "react";
 import GetBlogs from "./GetBlogs";
-const index = () => {
+export const postindex = () => {
   return (
-    <div id="blog">
+    <div>
       <GetBlogs />
     </div>
   );
 };
 
-export default index;
+export default postindex;

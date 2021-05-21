@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { BlogTypes } from "../../type";
-
+import { useUser } from "../../firebase/useUser";
 type postInput = {
   post: BlogTypes;
 };
 
 const BlogBox: React.FC<postInput> = ({ post }) => {
+  const { user } = useUser();
+
   return (
     <div className="">
       <div className=" justify-center items-center">
@@ -28,8 +30,14 @@ const BlogBox: React.FC<postInput> = ({ post }) => {
                       {post.title}
                     </h4>
                     <p id="job" className="text-sm mt-2 text-gray-500 line-clamp-2 md:line-clamp-4">
-                      {post.description}
+                      {post.content}
                     </p>
+                    <div>
+                      <small>{post.userName}</small>
+                    </div>
+                    <div>
+                      <small>{post.userEmail}</small>
+                    </div>
                   </div>
                 </div>
               </Link>
